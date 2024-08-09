@@ -12,11 +12,11 @@ const DestinationSection: React.FC<DestinationSectionProps> = ({
   return (
     <section className="bg-[#faf9f5] py-16 px-6">
       <div className="container mx-auto">
-        <div className="flex justify-between md:justify-start items-center mb-8 gap-4">
-          <h2 className="text-[#0f2d4b] text-4xl font-bold font-unbounded">
+        <div className="flex flex-col md:flex-row md:justify-between items-start mb-8 gap-4">
+          <h2 className="text-[#0f2d4b] text-4xl font-bold font-unbounded mb-4 md:mb-0">
             Destinations
           </h2>
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3 text-left md:text-left w-full md:w-auto">
             <svg
               width="40"
               height="40"
@@ -38,7 +38,7 @@ const DestinationSection: React.FC<DestinationSectionProps> = ({
                 stroke-width="2"
               ></rect>
             </svg>
-            <a href="#" className="text-[#0f2d4b] font-regular text-lg mt-2">
+            <a href="#" className="text-[#0f2d4b] font-regular text-lg">
               EXPLORE MORE
             </a>
           </div>

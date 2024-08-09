@@ -1,60 +1,53 @@
-import DestinationCard from "../cards/destination-card";
 import { TProduct } from "@/modules/products/type";
-import React from "react";
+import { TDestination } from "@/types/destinations";
+import { convertToText } from "@/utils";
 
-interface DestinationSectionProps {
-  destinations: TProduct[];
-}
+type DestinationCardProps = {
+  destination: TProduct;
+  index: number;
+};
 
-const DestinationSection: React.FC<DestinationSectionProps> = ({
-  destinations,
-}) => {
+const DestinationCard = ({ destination, index }: DestinationCardProps) => {
   return (
-    <section className="bg-[#faf9f5] py-16 px-6">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row md:justify-between items-start mb-8 gap-4">
-          <h2 className="text-[#0f2d4b] text-4xl font-bold font-unbounded mb-4 md:mb-0">
-            Destinations
-          </h2>
-          <div className="flex items-center gap-3 text-left md:text-left w-full md:w-auto">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-[#004040] group-hover:stroke-tan transition-colors ease-in-out duration-300"
-            >
-              <path
-                d="M17.6458 14.1471C17.8407 13.9515 18.1573 13.9509 18.3529 14.1458L23.8374 19.6108C24.0531 19.8257 24.0531 20.1751 23.8374 20.39L18.3529 25.855C18.1573 26.0499 17.8407 26.0493 17.6458 25.8537C17.4509 25.6581 17.4515 25.3415 17.6471 25.1466L22.8117 20.0004L17.6471 14.8542C17.4515 14.6593 17.4509 14.3427 17.6458 14.1471Z"
-                fill="#004040"
-              ></path>
-              <rect
-                x="1"
-                y="1"
-                width="38"
-                height="38"
-                rx="19"
-                stroke-width="2"
-              ></rect>
-            </svg>
-            <a href="#" className="text-[#0f2d4b] font-regular text-lg">
-              EXPLORE MORE
-            </a>
-          </div>
+    <div
+      className={`flex flex-col md:flex-row my-[72px] ${
+        index % 2 === 0 ? "" : "md:flex-row-reverse"
+      } items-center gap-10`}
+    >
+      <div className="flex-shrink-0 w-full md:w-1/2">
+        <img
+          src={destination.related_galleries[0].src}
+          alt={destination.itinerary_name}
+          className="w-full h-[380px] rounded-lg"
+        />
+      </div>
+      <div className="w-full md:w-1/2 flex flex-col justify-between">
+        <div className="space-y-2">
+          <span className="text-[#0f2d4b] font-medium text-sm">
+            {destination.itinerary_day} Days
+          </span>
+          <h1 className="text-[#0B7373] text-2xl md:text-4xl font-bold font-unbounded">
+            {destination.itinerary_name}
+          </h1>
+          <p className="text-[#0f2d4b] text-sm font-semibold">
+            Organized by {destination.partner_name}
+          </p>
+          <p className="text-[#0f2d4b] text-base">
+            {convertToText(destination.itinerary_short_description)}
+          </p>
         </div>
-        <div className="space-y-8 mb-8">
-          {destinations.map((destination, index) => (
-            <DestinationCard
-              key={index}
-              destination={destination}
-              index={index}
-            />
-          ))}
+        <div className="flex justify-between items-center mt-[72px]">
+          <div className="text-left">
+            <span className="text-[#0f2d4b] text-base">Start From</span> <br />
+            <h2 className="text-xl md:text-3xl text-[#0B7373]">{`IDR 5,200,000`}</h2>
+          </div>
+          <button className="px-4 py-2 text-[#0f2d4b] border-2 border-[#0f2d4b] rounded-full font-semibold hover:bg-gray-200 transition">
+            See Details
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default DestinationSection;
+export default DestinationCard;
